@@ -1,0 +1,2 @@
+SELECT flavor FROM(
+SELECT J.flavor, J.july + H.half AS total FROM (SELECT flavor, sum(total_order) AS july FROM JULY GROUP BY flavor) J FULL OUTER JOIN (SELECT flavor, sum(total_order) AS half FROM FIRST_HALF GROUP BY flavor) H ON J.flavor = H.flavor ORDER BY total DESC) FETCH FIRST 3 ROWS ONLY
